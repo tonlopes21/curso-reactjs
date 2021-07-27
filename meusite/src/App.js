@@ -1,35 +1,50 @@
-/*Trabalhando com estados */
+import React, { Component } from 'react';
 
-import React, {Component} from 'react';
-class App extends Component{
+class App extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            hora: '00:00:00'
+            status: false
+
         };
+        this.sair = this.sair.bind(this);
+        this.entrar = this.entrar.bind(this);
+
     }
-    
-    componentDidMount(){
-    
-        setInterval(() => {
-            this.setState({hora: new Date().toLocaleTimeString()})
-            
-        }, 1000);
+    sair() {
+        this.setState({ status: false });
+    }
+    entrar() {
+        this.setState({ status: true });
     }
 
-    render(){
-        return(
+
+
+
+    render() {
+        return (
             <div>
-                <h1>
-                    Meu Projeto {this.state.hora}
-                </h1>
+                {this.state.status ?
+                    <div>
+                        <h2>Bem-Vindo ao sistema</h2>
+                        <button onClick={this.sair}>Sair do sistema</button>
+
+
+                    </div> :
+                    <div>
+                        <h2>Olá visitante, faça o login</h2>
+                        <button onClick={this.entrar}>Entrar</button>
+
+
+                    </div>
+
+                }
 
 
             </div>
 
+
         );
-
-
     }
 } export default App;
